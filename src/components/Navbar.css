@@ -46,6 +46,7 @@
   color: #4cc9f0;
   font-weight: 600;
 }
+
 /* ── Navbar icon buttons ── */
 .nav-icon-btn {
   background: none;
@@ -190,13 +191,17 @@
   border-radius: 4px;
 }
 .notif-delete:hover { color: #e53e3e; background: #fff0f0; }
+
 .menu-toggle {
   display: none;
   background: none;
   border: none;
   font-size: 28px;
   cursor: pointer;
+  position: relative;
+  z-index: 1100; /* always above the fullscreen menu */
 }
+
 @media (max-width: 768px) {
 
   .navbar {
@@ -204,7 +209,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    flex-wrap: wrap;
+    /* no flex-wrap — menu is fullscreen overlay, not inline */
   }
 
   .logo {
@@ -213,15 +218,29 @@
 
   .menu-toggle {
     display: block;
-    margin-left: auto;
   }
 
+  /* ── FULLSCREEN DRAWER ── */
   .links {
     display: none;
+    position: fixed;      /* covers entire screen */
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    background: #fff;     /* solid white — hides page behind */
+    z-index: 1050;        /* above page, below .menu-toggle */
     flex-direction: column;
-    gap: 12px;
-    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    overflow-y: auto;
+    animation: menuSlideIn 0.22s ease;
+  }
+
+  @keyframes menuSlideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   .links.show-menu {
@@ -230,13 +249,19 @@
 
   .links a,
   .nav-icon-btn {
-    width: 100%;
+    font-size: 1.2rem;
     text-align: center;
-    padding: 10px;
+    padding: 10px 20px;
+    width: auto;
   }
 
   .notif-dropdown {
-    width: 280px;
-    right: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 320px;
+    right: auto;
   }
 }
