@@ -12,7 +12,6 @@ function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef(null);           // FIX 1: ref for the menu overlay
 
   const isActive = (path) =>
     location.pathname === path ? "active-link" : "";
@@ -23,35 +22,14 @@ function Navbar() {
 
   const token = localStorage.getItem("token");
 
-  // FIX 2: Close menu when route changes (user tapped a link)
+  // Close drawer on route change (user tapped a link)
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  // FIX 3: Close menu when tapping outside of it
-  useEffect(() => {
-    if (!menuOpen) return;
-    const handleOutsideClick = (e) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(e.target) &&
-        !e.target.closest(".menu-toggle")
-      ) {
-        setMenuOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleOutsideClick);
-    document.addEventListener("touchstart", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-      document.removeEventListener("touchstart", handleOutsideClick);
-    };
-  }, [menuOpen]);
-
-  // Fetch notifications for logged-in user
+  // Fetch notifications
   useEffect(() => {
     if (!user || !token) return;
-
     const fetchNotifications = async () => {
       try {
         const res = await axios.get(
@@ -60,18 +38,14 @@ function Navbar() {
         );
         setNotifications(res.data.notifications || []);
         setUnreadCount(res.data.unreadCount || 0);
-      } catch (err) {
-        // Silently fail — don't crash the navbar
-      }
+      } catch {}
     };
-
     fetchNotifications();
-
     const interval = setInterval(fetchNotifications, 30000);
     return () => clearInterval(interval);
   }, [user?.id]);
 
-  // Close notification dropdown when clicking outside
+  // Close notification dropdown on outside click
   useEffect(() => {
     const handleClick = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -84,7 +58,6 @@ function Navbar() {
 
   const handleBellClick = async () => {
     setShowDropdown((prev) => !prev);
-
     if (!showDropdown && unreadCount > 0 && token) {
       try {
         await axios.patch(
@@ -94,7 +67,7 @@ function Navbar() {
         );
         setUnreadCount(0);
         setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
-      } catch (err) {}
+      } catch {}
     }
   };
 
@@ -111,7 +84,7 @@ function Navbar() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setNotifications((prev) => prev.filter((n) => n._id !== id));
-    } catch (err) {}
+    } catch {}
   };
 
   const typeIcon = (type) => {
@@ -133,25 +106,22 @@ function Navbar() {
 
   return (
     <nav className="navbar">
+      {/* Logo — always visible, z-index 1101 keeps it above the drawer */}
       <div className="logo">
         <Link to="/">BabbaFly 🚀</Link>
       </div>
 
-      {/* FIX 4: Show ✕ when open, ☰ when closed — clear visual feedback */}
+      {/* Toggle — ☰ opens, ✕ closes */}
       <button
         className="menu-toggle"
         onClick={() => setMenuOpen((prev) => !prev)}
         aria-label={menuOpen ? "Close menu" : "Open menu"}
-        style={{ position: "relative", zIndex: 1100 }} // FIX 5: always on top
       >
         {menuOpen ? "✕" : "☰"}
       </button>
 
-      {/* FIX 6: attach menuRef so outside-click detection works */}
-      <div
-        ref={menuRef}
-        className={`links ${menuOpen ? "show-menu" : ""}`}
-      >
+      {/* Fullscreen drawer */}
+      <div className={`links ${menuOpen ? "show-menu" : ""}`}>
         <Link to="/" className={isActive("/")}>Home</Link>
         <Link to="/listings" className={isActive("/listings")}>Listings</Link>
         <Link to="/categories" className={isActive("/categories")}>Categories</Link>
@@ -159,7 +129,7 @@ function Navbar() {
         {user ? (
           <>
             <Link to="/chat" className={`nav-icon-btn ${isActive("/chat")}`} title="Messages">
-              💬
+              💬 Messages
             </Link>
 
             <div className="notif-wrapper" ref={dropdownRef}>
@@ -168,9 +138,11 @@ function Navbar() {
                 onClick={handleBellClick}
                 title="Notifications"
               >
-                🔔
+                🔔 Notifications
                 {unreadCount > 0 && (
-                  <span className="notif-badge">{unreadCount > 9 ? "9+" : unreadCount}</span>
+                  <span className="notif-badge">
+                    {unreadCount > 9 ? "9+" : unreadCount}
+                  </span>
                 )}
               </button>
 
