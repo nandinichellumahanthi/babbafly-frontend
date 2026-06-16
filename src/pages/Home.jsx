@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import API from "../services/api";
-mport { useScrollReveal } from "../hooks/useScrollReveal";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const TICKER_ITEMS = [
   "iPhone 14 · ₹67,000 · Vijayawada",
