@@ -106,12 +106,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Logo — always visible, z-index 1101 keeps it above the drawer */}
-      <div className="logo">
-        <Link to="/">BabbaFly 🚀</Link>
-      </div>
-
-      {/* Toggle — ☰ opens, ✕ closes */}
+      {/* Toggle — ☰ opens, ✕ closes (now first, on the left, like the reference image) */}
       <button
         className="menu-toggle"
         onClick={() => setMenuOpen((prev) => !prev)}
@@ -120,7 +115,18 @@ function Navbar() {
         {menuOpen ? "✕" : "☰"}
       </button>
 
-      {/* Fullscreen drawer */}
+      {/* Logo */}
+      <div className="logo">
+        <Link to="/">BabbaFly 🚀</Link>
+      </div>
+
+      {/* Backdrop — dims page behind the open dropdown panel, click to close */}
+      <div
+        className={`menu-backdrop ${menuOpen ? "show-backdrop" : ""}`}
+        onClick={() => setMenuOpen(false)}
+      />
+
+      {/* Compact dropdown panel */}
       <div className={`links ${menuOpen ? "show-menu" : ""}`}>
         <Link to="/" className={isActive("/")}>Home</Link>
         <Link to="/listings" className={isActive("/listings")}>Listings</Link>
