@@ -19,6 +19,7 @@ import Chat from "./pages/Chat";
 // Splash + Toast
 import SplashScreen from "./components/SplashScreen";
 import { ToastProvider } from "./components/Toast";
+import InstallPrompt from "./components/InstallPrompt";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -30,6 +31,7 @@ function App() {
   return (
     <ToastProvider>
       <Router>
+        <InstallPrompt />
         <Routes>
           {/* Existing routes */}
           <Route path="/" element={<Home />} />
