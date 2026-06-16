@@ -11,6 +11,7 @@ function Navbar() {
   const [unreadCount, setUnreadCount] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const isActive = (path) =>
     location.pathname === path ? "active-link" : "";
@@ -109,10 +110,17 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="logo">
-        <Link to="/">BabbaFly 🚀</Link>
-      </div>
-      
-      <div className="links">
+  <Link to="/">BabbaFly 🚀</Link>
+</div>
+
+<button
+  className="menu-toggle"
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  ☰
+</button>
+
+<div className={`links ${menuOpen ? "show-menu" : ""}`}>
         <Link to="/" className={isActive("/")}>Home</Link>
         <Link to="/listings" className={isActive("/listings")}>Listings</Link>
         <Link to="/categories" className={isActive("/categories")}>Categories</Link>

@@ -223,3 +223,47 @@
     right: -20px;
   }
 }
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 15px 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 15px;
+  }
+
+  .links.show-menu {
+    display: flex;
+  }
+
+  .links a,
+  .nav-icon-btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .notif-dropdown {
+    width: 280px;
+    right: 0;
+  }
+}
