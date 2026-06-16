@@ -190,3 +190,36 @@
   border-radius: 4px;
 }
 .notif-delete:hover { color: #e53e3e; background: #fff0f0; }
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 15px 12px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .links {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .links a {
+    font-size: 14px;
+  }
+
+  .sell-btn {
+    padding: 8px 14px;
+  }
+
+  .notif-dropdown {
+    width: 280px;
+    right: -20px;
+  }
+}

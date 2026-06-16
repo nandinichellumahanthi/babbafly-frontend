@@ -2697,3 +2697,59 @@ textarea {
   filter: grayscale(0.2);
   user-select: none;
 }
+@media (max-width: 768px) {
+
+  .hero {
+    padding: 120px 15px 60px;
+  }
+
+  .hero-headline {
+    font-size: 2.3rem !important;
+    line-height: 1.15 !important;
+    text-align: center;
+  }
+
+  .hero-sub {
+    font-size: 1rem !important;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .search-box {
+    width: 100% !important;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-box input {
+    width: 100% !important;
+  }
+
+  .search-box button {
+    width: 100% !important;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
