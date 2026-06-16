@@ -265,3 +265,13 @@
     right: auto;
   }
 }
+/* Add these two rules — that's all that's needed */
+
+.logo {
+  position: relative;
+  z-index: 1101; /* above .links (1050) and .menu-toggle (1100) */
+}
+
+.menu-toggle {
+  z-index: 1101; /* already has position:relative, just bump the z-index */
+}
