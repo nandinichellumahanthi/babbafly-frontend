@@ -190,39 +190,6 @@
   border-radius: 4px;
 }
 .notif-delete:hover { color: #e53e3e; background: #fff0f0; }
-@media (max-width: 768px) {
-
-  .navbar {
-    padding: 15px 12px;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .logo {
-    font-size: 24px;
-  }
-
-  .links {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-  }
-
-  .links a {
-    font-size: 14px;
-  }
-
-  .sell-btn {
-    padding: 8px 14px;
-  }
-
-  .notif-dropdown {
-    width: 280px;
-    right: -20px;
-  }
-}
 .menu-toggle {
   display: none;
   background: none;
@@ -230,25 +197,31 @@
   font-size: 28px;
   cursor: pointer;
 }
-
 @media (max-width: 768px) {
 
   .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 15px 20px;
-    flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .logo {
+    font-size: 24px;
   }
 
   .menu-toggle {
     display: block;
+    margin-left: auto;
   }
 
   .links {
     display: none;
     width: 100%;
     flex-direction: column;
-    gap: 15px;
-    padding-top: 15px;
+    gap: 12px;
+    margin-top: 15px;
   }
 
   .links.show-menu {
