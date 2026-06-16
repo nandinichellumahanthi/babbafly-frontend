@@ -1,0 +1,147 @@
+/* ── Seller Profile Page ── */
+.seller-profile-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.seller-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+  font-size: 1rem;
+}
+
+/* Seller card */
+.seller-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  padding: 28px 32px;
+  margin-bottom: 36px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+.seller-avatar-large {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #e53e3e;
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.seller-info h1 {
+  margin: 0 0 4px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.seller-badge {
+  font-size: 0.82rem;
+  color: #38a169;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+.seller-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.seller-rating .star { font-size: 1rem; }
+.seller-rating span:last-child { font-size: 0.82rem; color: #888; }
+.seller-listing-count {
+  font-size: 0.85rem;
+  color: #999;
+  margin: 0;
+}
+
+/* Listings grid */
+.seller-listings-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 18px;
+}
+.seller-no-listings {
+  color: #999;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+.seller-listings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 20px;
+}
+.seller-listing-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+.seller-listing-card:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+.seller-listing-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #f5f5f5;
+  overflow: hidden;
+}
+.seller-listing-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sold-ribbon {
+  position: absolute;
+  top: 10px;
+  left: -22px;
+  background: #e53e3e;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 28px;
+  transform: rotate(-45deg);
+  letter-spacing: 0.5px;
+}
+.seller-listing-info {
+  padding: 12px 14px;
+}
+.seller-listing-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.seller-listing-price {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #e53e3e;
+  margin: 0 0 4px;
+}
+.seller-listing-location {
+  font-size: 0.78rem;
+  color: #999;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .seller-card { flex-direction: column; text-align: center; }
+  .seller-listings-grid { grid-template-columns: repeat(2, 1fr); }
+}
