@@ -211,7 +211,7 @@ setTimeout(() => {
         <div className="gallery-wrap">
           <div className="gallery-main">
   {listing.sold && (
-    <div className="sold-badge-overlay"></div>
+    <div className="sold-badge-overlay">SOLD</div>
   )}
 
   <img
