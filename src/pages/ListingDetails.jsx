@@ -114,7 +114,9 @@ const handleBuyNow = async () => {
     });
 
     setOrderSuccess(true);
-
+setTimeout(() => {
+  setOrderSuccess(false);
+}, 3000);
   } catch (err) {
 
     setOrderError(
@@ -256,42 +258,52 @@ const handleBuyNow = async () => {
           )}
 
           {/* Buy / Wishlist / Message */}
-          <div className="details-actions">
-            {listing.sold ? (
-              <div className="sold-notice">🚫 This item has been sold.</div>
-            ) : orderSuccess ? (
-              <div className="order-success">✅ Order placed! We'll contact you shortly.</div>
-            ) : (
-              <>
-                {!isOwner && (
-                  <>
-                    <button
-                      onClick={handleBuyNow}
-                      disabled={ordering}
-                      className="buy-now-btn"
-                    >
-                      {ordering ? "Placing Order..." : "🛒 Buy Now"}
-                    </button>
-                    <button
-                      onClick={handleMessageSeller}
-                      disabled={startingChat}
-                      className="message-seller-btn"
-                    >
-                      {startingChat ? "Opening Chat..." : "💬 Message Seller"}
-                    </button>
-                  </>
-                )}
-                <button
-                  onClick={handleWishlist}
-                  className={`wishlist-btn ${wishlisted ? "wishlisted" : ""}`}
-                >
-                  {wishlisted ? "❤️ Wishlisted" : "🤍 Wishlist"}
-                </button>
-                {orderError && <p className="order-error">{orderError}</p>}
-                {wishlistMsg && <p className="wishlist-msg">{wishlistMsg}</p>}
-              </>
-            )}
-          </div>
+         <div className="details-actions">
+  {!isOwner && (
+    <>
+      <button
+        onClick={handleBuyNow}
+        disabled={ordering}
+        className="buy-now-btn"
+      >
+        {ordering ? "Placing Order..." : "🛒 Buy Now"}
+      </button>
+
+      <button
+        onClick={handleMessageSeller}
+        disabled={startingChat}
+        className="message-seller-btn"
+      >
+        {startingChat ? "Opening Chat..." : "💬 Message Seller"}
+      </button>
+    </>
+  )}
+
+  <button
+    onClick={handleWishlist}
+    className={`wishlist-btn ${wishlisted ? "wishlisted" : ""}`}
+  >
+    {wishlisted ? "❤️ Wishlisted" : "🤍 Wishlist"}
+  </button>
+
+  {orderSuccess && (
+    <p className="order-success">
+      ✅ Added to Orders Successfully
+    </p>
+  )}
+
+  {orderError && (
+    <p className="order-error">
+      {orderError}
+    </p>
+  )}
+
+  {wishlistMsg && (
+    <p className="wishlist-msg">
+      {wishlistMsg}
+    </p>
+  )}
+</div>
 
           {/* ── Seller Section ── */}
           {!isOwner && (
