@@ -146,19 +146,9 @@ function Listings() {
 
         <div className="filter-section">
 
-          <p className="result-count">
-
-            {filtered.length}
-
-            listing
-
-            {filtered.length !== 1
-              ? "s"
-              : ""}
-
-            found
-
-          </p>
+         <p className="result-count">
+  📦 {filtered.length} Listing{filtered.length !== 1 ? "s" : ""} Found
+</p>
 
           <select
             value={sortBy}

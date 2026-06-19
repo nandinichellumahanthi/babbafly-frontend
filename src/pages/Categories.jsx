@@ -31,10 +31,15 @@ function Categories() {
            <div
   key={category._id}
   className="category-card"
-  onClick={() =>
-    window.location.href =
-      `/listings?category=${category.name}`
-  }
+ onClick={() => {
+  const selectedCategory =
+    category.name === "Electronics"
+      ? "Accessories"
+      : category.name;
+
+  window.location.href =
+    `/listings?category=${selectedCategory}`;
+}}
 >
   <img
     src={
